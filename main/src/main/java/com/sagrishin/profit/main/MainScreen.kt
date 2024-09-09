@@ -12,19 +12,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.sagrishin.conavigator.generator.annotation.Destination
+import com.sagrishin.conavigator.library.NavArguments
 import com.sagrishin.conavigator.library.Navigator
-import com.sagrishin.profit.main.dashboard.DashboardTabScreen
-import com.sagrishin.profit.main.diets.DietsTabScreen
-import com.sagrishin.profit.main.plans.PlansTabScreen
-import com.sagrishin.profit.navigation.MainNavGraph
-import com.sagrishin.profit.uikit.UiKitBottomNavigation
-import com.sagrishin.profit.uikit.rememberBottomNavigationState
+import com.sagrishin.profit.main.navigation.MainNavGraph
+import com.sagrishin.profit.main.pages.dashboard.DashboardTabScreen
+import com.sagrishin.profit.main.pages.diets.DietsTabScreen
+import com.sagrishin.profit.main.pages.plans.PlansTabScreen
+import com.sagrishin.profit.main.uikit.BottomNavItem
+import com.sagrishin.profit.main.uikit.UiKitBottomNavigation
+import com.sagrishin.profit.main.uikit.rememberBottomNavigationState
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class MainScreenArgs constructor(
+    val tabToOpen: BottomNavItem? = null
+) : NavArguments
 
 @Composable
 @Destination(installIn = MainNavGraph::class)
-fun MainScreen(navigator: Navigator) {
+fun MainScreen(args: MainScreenArgs, navigator: Navigator) {
     val bottomNavigationState = rememberBottomNavigationState(
-        initialItem = DashboardBottomNavItem,
+        initialItem = args.tabToOpen ?: DashboardBottomNavItem,
         allItems = buildList {
             add(DashboardBottomNavItem)
             add(DietsBottomNavItem)

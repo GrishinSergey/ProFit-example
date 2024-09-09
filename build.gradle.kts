@@ -6,4 +6,5 @@ plugins {
     alias(libs.plugins.kotlin.parcelize.gradle.plugin) apply false
     alias(libs.plugins.jetbrains.compose.compiler) apply false
     alias(libs.plugins.dagger.hilt.gradle.plugin) apply false
+    alias(libs.plugins.android.library) apply false
 }

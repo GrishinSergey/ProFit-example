@@ -1,4 +1,4 @@
-package com.sagrishin.profit.main.diets
+package com.sagrishin.profit.main.pages.plans
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,12 +12,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 
 @Composable
-fun DietsTabScreen() {
+fun PlansTabScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Magenta.copy(alpha = 0.3F)),
+            .background(Color.Blue.copy(alpha = 0.3F)),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-    ) { Text(text = "Diets", color = Color.Magenta, fontWeight = FontWeight.Medium) }
+    ) { Text(text = "Plans", color = Color.Blue, fontWeight = FontWeight.Medium) }
 }

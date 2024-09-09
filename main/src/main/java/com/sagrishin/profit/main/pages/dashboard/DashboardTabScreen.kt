@@ -1,4 +1,4 @@
-package com.sagrishin.profit.main.dashboard
+package com.sagrishin.profit.main.pages.dashboard
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.sagrishin.conavigator.library.Navigator
-import com.sagrishin.profit.exercises.SelectExercisesRoute
+import com.sagrishin.profit.main.contracts.MainNavigator
 
 @Composable
 fun DashboardTabScreen(navigator: Navigator) {
@@ -30,11 +30,22 @@ fun DashboardTabScreen(navigator: Navigator) {
         Text(text = "Dashboard", color = Color.Red, fontWeight = FontWeight.Medium)
 
         Button(
-            modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth(),
             elevation = ButtonDefaults.elevation(0.dp, 0.dp, 0.dp, 0.dp, 0.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red.copy(alpha = 0.5F)),
-            onClick = { navigator.navigateTo(SelectExercisesRoute()) },
-            content = { Text(text = "Select Exercises", color = Color.White, fontWeight = FontWeight.Medium) },
+            onClick = {
+                require(navigator is MainNavigator)
+                navigator.openExercisesSelector()
+            },
+            content = {
+                Text(
+                    text = "Select Exercises",
+                    color = Color.White,
+                    fontWeight = FontWeight.Medium,
+                )
+            },
         )
     }
 }

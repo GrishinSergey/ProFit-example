@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeGesturesPadding
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
@@ -23,17 +24,17 @@ import androidx.compose.ui.unit.dp
 import com.sagrishin.conavigator.generator.annotation.Destination
 import com.sagrishin.conavigator.library.NavArguments
 import com.sagrishin.conavigator.library.Navigator
-import com.sagrishin.profit.navigation.AppNavigatorImpl
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class EnterPasswordScreenArgs constructor(
+data class ConfirmationScreenArgs constructor(
     val login: String,
 ) : NavArguments
 
+
 @Composable
 @Destination(installIn = LoginNavGraph::class)
-fun EnterPasswordScreen(args: EnterPasswordScreenArgs, navigator: Navigator) {
+fun IdentifierConfirmationScreen(args: ConfirmationScreenArgs, navigator: Navigator) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,24 +42,34 @@ fun EnterPasswordScreen(args: EnterPasswordScreenArgs, navigator: Navigator) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        Text(
+            modifier = Modifier
+                .safeGesturesPadding()
+                .fillMaxWidth(),
+            text = "You are a new user. Please, confirm your identifier '${args.login}' with OTP:"
+        )
+
         var password by remember { mutableStateOf("") }
         OutlinedTextField(
-            modifier = Modifier.padding(bottom = 24.dp).padding(horizontal = 16.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(top = 32.dp)
+                .padding(bottom = 24.dp)
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth(),
             value = password,
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 textColor = MaterialTheme.colors.primary,
             ),
-            label = { Text("Enter password") },
+            label = { Text("Enter pin") },
             onValueChange = { password = it },
         )
 
         Button(
-            modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
-            content = { Text(text = "Go to Main") },
-            onClick = {
-                require(navigator is AppNavigatorImpl)
-                navigator.navigateToMain()
-            }
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth(),
+            content = { Text(text = "Create a Password") },
+            onClick = { navigator.navigateTo(EnterPasswordRoute(EnterPasswordScreenArgs(args.login))) }
         )
     }
 }

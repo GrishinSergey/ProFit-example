@@ -5,7 +5,7 @@ import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
-import com.sagrishin.profit.uikit.BottomNavItem
+import com.sagrishin.profit.main.uikit.BottomNavItem
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

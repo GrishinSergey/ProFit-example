@@ -1,4 +1,4 @@
-package com.sagrishin.profit.uikit
+package com.sagrishin.profit.main.uikit
 
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem

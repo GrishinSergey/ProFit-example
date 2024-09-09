@@ -1,4 +1,4 @@
-package com.sagrishin.profit.uikit
+package com.sagrishin.profit.main.uikit
 
 import android.os.Parcelable
 import androidx.compose.material.Icon

@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.application.gradle.plugin)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android.gradle.plugin)
     alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.ksp.devtools.gradle.plugin)
@@ -10,16 +10,14 @@ plugins {
 }
 
 android {
-    namespace = "com.sagrishin.profit"
+    namespace = "com.sagrishin.profit.main"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.sagrishin.profit"
         minSdk = 29
-        targetSdk = 34
 
-        versionCode = 1
-        versionName = "1.0.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -51,8 +49,6 @@ hilt {
 }
 
 dependencies {
-    implementation(projects.main)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
 
